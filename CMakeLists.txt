@@ -61,4 +61,4 @@ include(${CMAKE_SOURCE_DIR}/cmake/dependencies.cmake)
 #####################################
 # Define Targets
 #####################################
-add_subdirectory(src)
+add_subdirectory(project)
