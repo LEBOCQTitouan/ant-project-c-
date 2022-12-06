@@ -3,8 +3,8 @@
 
 
 class World {
-
-
+    + getTile(x,y): Tile
+    + moveAnt(Ant, Tile)
 }
 
 
@@ -13,13 +13,19 @@ interface Object {
 }
 
 class Tile {
+    - x
+    - y
+    + getX()
+    + getY()
+    + getAnts(): Ant[]
+    + getObject(): Object
 
 }
 
 class Pheromone {
     - quantity: int
     - geneticMarker: char
-    getQuantity()
+    + getQuantity()
 }
 
 
@@ -28,11 +34,13 @@ Object <|-- Food
 Object <|-- Colony
 
 
-World *-> Tile : [][]tiles
-Tile *-> Object : object
-Tile *--> Ant : []ants
-Tile *--> Pheromone : []pheromones
+World *-> Tile : Tile[][]
+Tile *-> Object : Object
+Tile *--> Ant : Ant[]
+Tile *--> Pheromone : Pheromone[]
 
+Ant *-- Tile
+Ant *- Pheromone
 
 
 
