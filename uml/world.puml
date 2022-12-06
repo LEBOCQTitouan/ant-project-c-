@@ -22,13 +22,15 @@ class Pheromone {
     getQuantity()
 }
 
+class WorldMap
+
 
 Object <|-- Rock
 Object <|-- Food
 Object <|-- Colony
 
-
-World *-> Tile : [][]tiles
+World -> WorldMap : map
+WorldMap *-> Tile : [][]tiles
 Tile *-> Object : object
 Tile *--> Ant : []ants
 Tile *--> Pheromone : []pheromones

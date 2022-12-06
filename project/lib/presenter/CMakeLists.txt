@@ -1,7 +1,7 @@
 # MIT License 
 # Copyright (c) 2022-Today Titouan Lebocq <lebocq.titouan@gmail.com>
-# MIT License 
-# Copyright (c) 2022-Today Titouan Lebocq <lebocq.titouan@gmail.com>
 #
 
-add_library(presenter src/test.cpp include/test.hpp)
+file(GLOB_RECURSE presenter_include include/*)
+file(GLOB_RECURSE presenter_source src/*)
+add_library(presenter ${presenter_include} ${presenter_source})
