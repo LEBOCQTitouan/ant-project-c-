@@ -48,12 +48,9 @@ If you activate the BUILD_TESTING flag, you need to perform in advance a conan i
 ```bash
 cd /path/to/this/project
 mkdir -p build # md build (on Windows)
-cd build
 conan install .. --build=missing # install debs and build missing one
-cmake -DBUILD_TESTING=TRUE -DBUILD_SHARED_LIBS=TRUE ..
-cmake --build .
-cmake --build . --target format
-cmake --build . --target package
+cmake -B build
+cmake --build build
 ```
 
 ## Project informations

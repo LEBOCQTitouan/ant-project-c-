@@ -38,3 +38,8 @@ bin/*
 # vs code
 .vscode
 .vscode/*
+
+# clion
+.idea
+.idea/*
+cmake-build-debug/*
