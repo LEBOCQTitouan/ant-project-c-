@@ -1,0 +1,25 @@
+@startuml
+
+
+class Clock {
+    subscribeClock(TimedElement)
+    unsubscribeClock(TimedElement)
+    getClock()
+    tick()
+}
+
+interface TimedElement {
+    void update(Clock clock);
+}
+
+
+Clock o- Clock
+Clock *-- TimedElement: []elements
+
+TimedElement <|-- Ant
+TimedElement <|-- Pheromone
+
+
+
+
+@enduml

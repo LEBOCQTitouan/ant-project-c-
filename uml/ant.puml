@@ -1,0 +1,37 @@
+@startuml
+
+
+abstract class Ant {
+    geneticMarkers: char
+}
+
+enum EnumAntState {
+    LARVA,
+    MINOR,
+    ADULT,
+    DEAD
+}
+
+abstract class AntState {
+    + getState(): EnumAntState
+
+
+}
+
+EnumAntState - AntState
+
+Ant *-- AntState: -state
+
+AntState <|-- LarvaState
+AntState <|-- MinorState
+AntState <|-- AdultState
+AntState <|-- DeadState
+
+
+Ant <|-- AntQueen
+Ant <|-- AntSoldier
+Ant <|-- AntWorker
+Ant <|-- AntScout
+
+
+@enduml

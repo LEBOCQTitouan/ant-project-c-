@@ -1,0 +1,40 @@
+@startuml
+
+
+
+class World {
+
+
+}
+
+
+interface Object {
+
+}
+
+class Tile {
+
+}
+
+class Pheromone {
+    - quantity: int
+    - geneticMarker: char
+    getQuantity()
+}
+
+
+Object <|-- Rock
+Object <|-- Food
+Object <|-- Colony
+
+
+World *-> Tile : [][]tiles
+Tile *-> Object : object
+Tile *--> Ant : []ants
+Tile *--> Pheromone : []pheromones
+
+
+
+
+
+@enduml
