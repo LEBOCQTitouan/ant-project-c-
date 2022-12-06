@@ -1,0 +1,60 @@
+@startuml
+
+class Simulator {
+
+}
+
+abstract Ant {
+    + getAction(): AntAction[]
+}
+
+class SimulatorSequencer {
+    + getAntsInstructions(Ant)
+    + executeAntsInstructions()
+}
+
+
+
+interface AntAction {
+    execute()
+}
+
+class World {
+    + getAllAnt(): Ant[]
+}
+
+enum Direction {
+    NORTH,
+    NORTH_EAST,
+    EAST,
+    SOUTH_EAST,
+    SOUTH,
+    SOUTH_WEST,
+    WEST,
+    NORTH_WEST,
+}
+
+
+
+
+AntAction <|-- PickFood
+AntAction <|-- Move
+AntAction <|-- Attack
+AntAction <|-- PutPheromone
+
+
+AntAction - Ant
+World *-- Ant: Ant[]
+
+Simulator o-- World
+Simulator o-- SimulatorSequencer
+SimulatorSequencer o- World
+
+
+
+SimulatorSequencer o-- AntAction: AntAction[]
+
+
+Move -- Direction
+
+@enduml

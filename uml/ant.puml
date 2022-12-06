@@ -3,6 +3,7 @@
 
 abstract class Ant {
     geneticMarkers: char
+        + changeState(AntState)
 }
 
 enum EnumAntState {
@@ -14,8 +15,6 @@ enum EnumAntState {
 
 abstract class AntState {
     + getState(): EnumAntState
-
-
 }
 
 EnumAntState - AntState
