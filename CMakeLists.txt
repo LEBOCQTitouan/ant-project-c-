@@ -3,7 +3,7 @@
 #
 # Main CMake Project file
 
-# cmake requierement
+# cmake requirement
 cmake_minimum_required(VERSION 3.13.4, FATAL_ERROR)
 # project informations
 project(ant_simulation)
