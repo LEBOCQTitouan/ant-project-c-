@@ -1,18 +1,16 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-class WorldMapFactory {
-}
-interface WorldMap {
-    getTiles() : [][]Tile
-}
-class AntWorldMap {
-}
-class Tile {
+abstract WorldMapFactory {
 }
 
-WorldMapFactory -[dashed]-> WorldMap
-AntWorldMap *-> Tile : [][]tiles
-AntWorldMap --|> WorldMap
+abstract WorldMap {
+}
 
+WorldMapFactory <|-- RandomMapFactory
+WorldMap <|-- WorldMapTile
+WorldMap .> WorldMapFactory
+WorldMapTile .> RandomMapFactory
+
+
+WorldMapTile *--> Tile : Tile[][]
 @enduml
