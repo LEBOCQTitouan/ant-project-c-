@@ -1,0 +1,16 @@
+@startuml
+
+abstract WorldMapFactory {
+}
+
+abstract WorldMap {
+}
+
+WorldMapFactory <|-- RandomMapFactory
+WorldMap <|-- WorldMapTile
+WorldMap .> WorldMapFactory
+WorldMapTile .> RandomMapFactory
+
+
+WorldMapTile *--> Tile : Tile[][]
+@enduml

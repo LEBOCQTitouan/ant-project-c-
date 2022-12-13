@@ -2,5 +2,5 @@
 crowcpp-crow/1.0+3 # http lib
 
 [generators]
-cmake_find_package
+cmake
 
