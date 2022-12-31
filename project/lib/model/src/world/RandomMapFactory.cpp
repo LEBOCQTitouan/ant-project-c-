@@ -7,12 +7,17 @@
 #include "../../include/world/RandomMapFactory.h"
 #include "../../include/world/object/Rock.h"
 #include "../../include/world/object/Food.h"
+#include "../../include/world/object/Colony.h"
 
 namespace AntWorld {
 
 
     WorldMapTile *RandomMapFactory::generateMap() {
         auto *worldMapTile = new WorldMapTile();
+
+        worldMapTile->getTile( WorldMapTile::BOARD_HEIGHT /2 , WorldMapTile::BOARD_HEIGHT /2)->setObject(new Colony());
+
+
         for (int i = 0; i < WorldMapTile::BOARD_HEIGHT * WorldMapTile::BOARD_HEIGHT * 0.3; i++) {
             int x;
             int y;

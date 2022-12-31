@@ -11,6 +11,7 @@ namespace AntWorld {
         ROCK,
         FOOD,
         VOID,
+        COLONY
     } ObjectType;
 
     class Object {

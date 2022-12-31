@@ -10,19 +10,7 @@ using namespace AntClock;
 using namespace AntWorld;
 
 int main(int argc, char const *argv[]) {
-    std::cout << "Hello world !" << std::endl;
-    AntQueen antQueen;
-    Clock *clock = Clock::getClockInstance();
-
-    std::cout << antQueen.getAge() << std::endl;
-    std::cout << antQueen.getEP() << std::endl;
-
-    clock->tick();
-    std::cout << antQueen.getAge() << std::endl;
-    std::cout << antQueen.getEP() << std::endl;
-
     RandomMapFactory randomMapFactory;
-
     WorldMapTile *worldMapTile = randomMapFactory.generateMap();
     for (int x = 0; x < WorldMapTile::BOARD_HEIGHT; x++) {
         for (int y = 0; y < WorldMapTile::BOARD_WIDTH; y++) {
@@ -32,6 +20,9 @@ int main(int argc, char const *argv[]) {
                     break;
                 case ObjectType::ROCK:
                     std::cout << "#";
+                    break;
+                case ObjectType::COLONY:
+                    std::cout << "C";
                     break;
                 case ObjectType::FOOD:
                     std::cout << "F";
