@@ -8,10 +8,16 @@ void test() {
 
     //define your endpoint at the root directory
     CROW_ROUTE(app, "/")([](){
-        return "Hello world";
+        crow::json::wvalue x;
+        x["message"] = "Hello, WorldMapTile!";
+        x["value"][0] = "Value 0";
+        x["value"][1] = "Value 1";
+        return x;
+
+
     });
 
     //set the port, set the app to run on multiple threads, and run the app
-    app.port(18080).multithreaded().run();
+    app.port(18080).run();
 
 }
