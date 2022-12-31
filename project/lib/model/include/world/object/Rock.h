@@ -9,9 +9,7 @@
 
 namespace AntWorld {
     class Rock: public Object {
-        ObjectType getObjectType() override {
-            return ObjectType::ROCK;
-        }
+        ObjectType getObjectType() override;
     };
 }
 

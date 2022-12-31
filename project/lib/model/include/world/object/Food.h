@@ -9,9 +9,7 @@
 
 namespace AntWorld {
     class Food : public Object {
-        ObjectType getObjectType() override {
-            return ObjectType::FOOD;
-        }
+        ObjectType getObjectType() override;
     };
 }
 

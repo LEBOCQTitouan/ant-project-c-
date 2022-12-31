@@ -3,3 +3,9 @@
 //
 
 #include "../../../include/world/object/Rock.h"
+
+namespace AntWorld {
+    ObjectType Rock::getObjectType() {
+        return ObjectType::ROCK;
+    }
+}

@@ -3,10 +3,10 @@
 //
 
 #include "../../../include/world/object/Rock.h"
-#include "../../../include/world/object/Food.h"
+#include "../../../include/world/object/Void.h"
 
 namespace AntWorld {
-    ObjectType Food::getObjectType() {
-        return ObjectType::FOOD;
+    ObjectType Void::getObjectType() {
+        return ObjectType::VOID;
     }
 }

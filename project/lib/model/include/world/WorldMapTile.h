@@ -6,15 +6,16 @@
 #define ANT_SIMULATION_WORLDMAPTILE_H
 
 #include "Tile.h"
+#include "object/Object.h"
 
 namespace AntWorld {
 
     class WorldMapTile {
 
     public:
-        Tile getTile(int x, int y);
-        static const int BOARD_WIDTH = 64;
-        static const int BOARD_HEIGHT = 64;
+        Tile * getTile(int x, int y);
+        static const int BOARD_WIDTH = 211;
+        static const int BOARD_HEIGHT = 201;
     private:
         Tile tiles[BOARD_HEIGHT][BOARD_WIDTH];
     };

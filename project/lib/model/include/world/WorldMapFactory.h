@@ -4,12 +4,15 @@
 
 #ifndef ANT_SIMULATION_WORLDMAPFACTORY_H
 #define ANT_SIMULATION_WORLDMAPFACTORY_H
+
+#include "WorldMap.h"
+
 namespace AntWorld {
 
     class WorldMapFactory {
 
     public:
-        WorldMapgenerateMap();
+        virtual WorldMap generateMap() = 0;
 
     };
 

@@ -6,7 +6,7 @@
 
 namespace AntWorld {
 
-    Tile WorldMapTile::getTile(int x, int y) {
-        return tiles[x][y];
+    Tile* WorldMapTile::getTile(int x, int y) {
+        return &tiles[x][y];
     }
 } // AntWorld

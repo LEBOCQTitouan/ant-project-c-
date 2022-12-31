@@ -10,6 +10,7 @@ namespace AntWorld {
     typedef enum {
         ROCK,
         FOOD,
+        VOID,
     } ObjectType;
 
     class Object {
