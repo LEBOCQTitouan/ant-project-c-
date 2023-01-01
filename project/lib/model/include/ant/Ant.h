@@ -7,8 +7,26 @@
 
 #include "state/AntState.h"
 #include "../clock/TimedElement.h"
+#include "../world/Pheromone.h"
+#include "../world/WorldMap.h"
 
+#include <map>
+
+
+namespace AntSimulator {
+    class AntAction;
+}
 namespace AntEntities {
+
+
+    typedef enum {
+        QUEEN,
+        WORKER,
+        SOLDIER,
+        SCOUT,
+    } AntType;
+
+
     class Ant : public AntClock::TimedElement {
     protected:
         char geneticMarker;
@@ -16,6 +34,9 @@ namespace AntEntities {
         int hp; // Health Point
         int ep; // Eat Point
         int age = 0;
+        std::map<AntWorld::Direction, AntWorld::Pheromone> pheromoneList;
+        int x;
+        int y;
     public:
         void changeState(AntState::AntState *newState);
 
@@ -27,8 +48,19 @@ namespace AntEntities {
 
         char getGeneticMarker() const;
 
-        virtual void getAction() = 0;
+        virtual std::vector<AntSimulator::AntAction *> * getActionList() = 0;
+
+        void setX(int x);
+
+        void setY(int y);
+
+        int getX() const;
+
+        int getY() const;
+
+        virtual AntType getAntType() = 0;
     };
+
 }
 
 

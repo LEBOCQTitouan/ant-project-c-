@@ -18,4 +18,8 @@ namespace AntWorld {
     Pheromone::Pheromone(int quantity, char geneticMarker): quantity(quantity), geneticMarker(geneticMarker) {
 
     }
+
+    void Pheromone::update() {
+        this->quantity--;
+    }
 } // AntWorld

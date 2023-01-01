@@ -17,6 +17,7 @@ class Pheromone: public AntClock::TimedElement {
         Pheromone(int quantity, char geneticMarker);
         int getQuantity();
         char getGeneticMarker();
+        void update() override;
     };
 
 } // AntWorld

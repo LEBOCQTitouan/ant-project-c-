@@ -9,7 +9,7 @@ void test() {
     //define your endpoint at the root directory
     CROW_ROUTE(app, "/")([](){
         crow::json::wvalue x;
-        x["message"] = "Hello, WorldMapTile!";
+        x["message"] = "Hello, WorldMapRandom!";
         x["value"][0] = "Value 0";
         x["value"][1] = "Value 1";
         return x;

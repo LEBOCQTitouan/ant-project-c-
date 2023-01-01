@@ -7,7 +7,6 @@
 
 namespace AntEntities {
 
-
     void Ant::changeState(AntState::AntState *newState) {
         this->antState = newState;
     }
@@ -27,5 +26,23 @@ namespace AntEntities {
     char Ant::getGeneticMarker() const {
         return geneticMarker;
     }
+
+
+    int Ant::getX() const {
+        return x;
+    }
+
+    int Ant::getY() const {
+        return y;
+    }
+
+    void Ant::setX(int newX) {
+        Ant::x = newX;
+    }
+
+    void Ant::setY(int newY) {
+        Ant::y = newY;
+    }
+
 
 }

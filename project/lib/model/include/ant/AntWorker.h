@@ -5,10 +5,14 @@
 #ifndef ANT_SIMULATION_ANTWORKER_H
 #define ANT_SIMULATION_ANTWORKER_H
 
+#include "Ant.h"
+
 namespace AntEntities {
 
-    class AntWorker {
-
+    class AntWorker: public Ant {
+        AntType getAntType() override;
+        void update() override;
+        std::vector<AntSimulator::AntAction *> * getActionList() override;
     };
 
 } // Ant

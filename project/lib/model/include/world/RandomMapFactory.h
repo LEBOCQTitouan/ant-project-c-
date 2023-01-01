@@ -6,18 +6,19 @@
 #define ANT_SIMULATION_RANDOMMAPFACTORY_H
 
 #include "WorldMap.h"
-#include "WorldMapTile.h"
+#include "WorldMapRandom.h"
+#include "WorldMapFactory.h"
 
 namespace AntWorld {
-    class RandomMapFactory {
+    class RandomMapFactory: public WorldMapFactory {
 
     private :
-        static int getRandomX();
+        int getRandom(int inf, int sup);
 
-        static int getRandomY();
-
+        Object * generateObject(int x,int y);
     public:
-        AntWorld::WorldMapTile * generateMap();
+        AntWorld::WorldMap * generateMap() override;
+
     };
 }
 

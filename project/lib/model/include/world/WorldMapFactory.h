@@ -12,7 +12,7 @@ namespace AntWorld {
     class WorldMapFactory {
 
     public:
-        virtual WorldMap generateMap() = 0;
+        virtual WorldMap *generateMap() = 0;
 
     };
 

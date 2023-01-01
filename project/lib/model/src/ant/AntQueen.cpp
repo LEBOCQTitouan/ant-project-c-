@@ -4,6 +4,7 @@
 
 #include "../../include/ant/AntQueen.h"
 #include "../../include/clock/Clock.h"
+#include "../../include/action/Procreate.h"
 #include <random>
 
 namespace AntEntities {
@@ -21,15 +22,43 @@ namespace AntEntities {
 
     char AntQueen::generateGeneticMarker() {
         std::mt19937 mt(time(nullptr));
-        return (char)(mt()%CHAR_MAX);
+        return (char) (mt() % CHAR_MAX);
     }
 
-    void AntQueen::getAction() {
 
+    std::vector<AntSimulator::AntAction *> *AntQueen::getActionList() {
+        auto *actionList = new std::vector<AntSimulator::AntAction *>();
+        turnCounter++;
+        if (turnCounter % 12 == 0) {
+            return actionList;
+        }
+        if (age == 0) {
+            actionList->push_back(new AntSimulator::Procreate(this, AntType::SCOUT));
+            return actionList;
+        }
+
+        std::mt19937 mt(time(nullptr));
+        int random = mt() % 100;
+
+        AntType antType;
+        if (random < 80) {
+            antType = AntType::WORKER;
+        } else if (random < 95) {
+            antType = AntType::SCOUT;
+        } else {
+            antType = AntType::SOLDIER;
+        }
+        actionList->push_back(new AntSimulator::Procreate(this, antType));
+        return actionList;
     }
+
 
     void AntQueen::update() {
-        this->age++;
-        this->ep--;
+        age++;
     }
+
+    AntType AntQueen::getAntType() {
+        return AntType::QUEEN;
+    }
+
 } // Ant

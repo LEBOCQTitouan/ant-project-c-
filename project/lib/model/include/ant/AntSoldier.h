@@ -5,10 +5,14 @@
 #ifndef ANT_SIMULATION_ANTSOLDIER_H
 #define ANT_SIMULATION_ANTSOLDIER_H
 
+#include "Ant.h"
+
 namespace AntEntities {
 
-    class AntSoldier {
-
+    class AntSoldier: public Ant {
+        AntType getAntType() override;
+        void update() override;
+        std::vector<AntSimulator::AntAction *> * getActionList() override;
     };
 
 } // Ant

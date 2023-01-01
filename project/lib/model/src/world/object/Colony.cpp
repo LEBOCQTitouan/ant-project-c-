@@ -9,12 +9,4 @@ namespace AntWorld {
         return COLONY;
     }
 
-    Colony::~Colony() {
-        delete antQueen;
-    }
-
-    Colony::Colony(AntEntities::AntQueen *antQueen) : antQueen(antQueen) {}
-
-
-    Colony::Colony() : antQueen(new AntEntities::AntQueen()) {}
 } // AntWorld

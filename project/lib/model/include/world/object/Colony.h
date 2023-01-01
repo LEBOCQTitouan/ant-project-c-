@@ -11,14 +11,9 @@
 namespace AntWorld {
 
     class Colony: public Object {
-    private:
-        AntEntities::AntQueen *antQueen;
 
     public:
-        Colony(AntEntities::AntQueen *antQueen);
-        Colony();
 
-        virtual ~Colony();
 
         ObjectType getObjectType() override;
     };
