@@ -27,10 +27,10 @@ namespace AntWorld {
     }
 
     void Tile::removeAnt(AntEntities::Ant *ant) {
-        std::remove(this->antList.begin(), this->antList.end(), ant);
+        this->antList.erase(std::remove(this->antList.begin(), this->antList.end(), ant), this->antList.end());
     }
 
-#include <stdexcept>  }
+
 
     int Tile::getX() const {
         return x;
