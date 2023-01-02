@@ -25,8 +25,8 @@ private:
     std::string makeAntWorldJSON();
     // ant simulation data
     AntSimulator::Simulator *sim;
-    std::string getJSONRepr();
-    std::string getJSONRepr(AntWorld::Tile *t);
+    crow::json::wvalue getJSONRepr();
+    crow::json::wvalue getJSONRepr(AntWorld::Tile *t);
 };
 
 
