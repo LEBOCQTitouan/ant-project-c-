@@ -6,6 +6,8 @@
 #include "../../include/action/Move.h"
 #include "../../include/clock/Clock.h"
 #include "../../include/ant/state/MinorState.h"
+#include <stdexcept>
+
 namespace AntEntities {
 
 

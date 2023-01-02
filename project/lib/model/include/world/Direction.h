@@ -4,6 +4,8 @@
 
 #ifndef ANT_SIMULATION_DIRECTION_H
 #define ANT_SIMULATION_DIRECTION_H
+
+#include <stdexcept>
 namespace AntWorld {
 
     typedef enum {

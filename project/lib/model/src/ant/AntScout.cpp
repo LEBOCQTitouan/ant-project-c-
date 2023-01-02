@@ -2,6 +2,7 @@
 // Created by Antoine Guespin on 14/12/2022.
 //
 
+#include <stdexcept>
 #include <random>
 #include "../../include/ant/AntScout.h"
 #include "../../include/ant/state/MinorState.h"

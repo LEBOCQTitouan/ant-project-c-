@@ -6,7 +6,7 @@
 #include "../../include/ant/AntWorker.h"
 #include "../../include/ant/AntScout.h"
 #include "../../include/ant/AntSoldier.h"
-
+#include <stdexcept>
 namespace AntSimulator {
 
     Procreate::Procreate(AntEntities::AntQueen *antQueen, AntEntities::AntType antType) : antQueen(antQueen),
