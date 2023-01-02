@@ -22,7 +22,7 @@ namespace AntEntities {
      * @return
      */
     std::vector<AntSimulator::AntAction *> * AntSoldier::getActionList() {
-
+        return nullptr;
     }
 
 

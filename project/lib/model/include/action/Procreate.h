@@ -5,6 +5,8 @@
 #ifndef ANT_SIMULATION_PROCREATE_H
 #define ANT_SIMULATION_PROCREATE_H
 
+#include <stdexcept>
+
 #include "AntAction.h"
 #include "../ant/AntQueen.h"
 

@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <algorithm>
 #include "../../include/world/Tile.h"
 
 namespace AntWorld {
@@ -26,8 +27,10 @@ namespace AntWorld {
     }
 
     void Tile::removeAnt(AntEntities::Ant *ant) {
-        this->antList.erase(std::remove(this->antList.begin(), this->antList.end(), ant), this->antList.end());
+        std::remove(this->antList.begin(), this->antList.end(), ant);
     }
+
+#include <stdexcept>  }
 
     int Tile::getX() const {
         return x;

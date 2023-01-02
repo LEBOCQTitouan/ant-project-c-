@@ -5,6 +5,10 @@
 #ifndef ANT_SIMULATION_ANTQUEEN_H
 #define ANT_SIMULATION_ANTQUEEN_H
 
+#include <random>
+#include <ctime>
+#include <climits>
+
 #include "Ant.h"
 #include "../action/AntAction.h"
 

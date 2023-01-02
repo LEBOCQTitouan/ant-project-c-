@@ -5,7 +5,6 @@
 #include "../../include/ant/AntQueen.h"
 #include "../../include/clock/Clock.h"
 #include "../../include/action/Procreate.h"
-#include <random>
 
 namespace AntEntities {
     AntQueen::AntQueen() {
