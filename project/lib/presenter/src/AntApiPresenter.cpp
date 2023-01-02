@@ -4,13 +4,15 @@
 
 #include "../include/AntApiPresenter.h"
 
-AntApiPresenter::AntApiPresenter() {}
+AntApiPresenter::AntApiPresenter() {
+    sim = new AntSimulator::Simulator();
+    sim->initSimulation(new AntWorld::RandomMapFactory);
+}
 
 crow::json::wvalue AntApiPresenter::expose() {
     crow::json::wvalue json({
-        {"map", "{Tiles:[[{type:'rock'}, {type:'tile', content:[{type:ant}]}], [{type:'tile', content:[{type:food}]}, {type:'tile', content:[{type:food}, {type:ant}]}]]}"}
+        {"tiles", getJSONRepr()}
     });
-    // json["message2"] = "Hello, World.. Again!";
     return json;
 }
 
@@ -20,7 +22,29 @@ AntApiPresenter& AntApiPresenter::getInstance()
     return instance;
 }
 
-std::string AntApiPresenter::makeAntWorldJSON() {
-    std::string json = "{";
-    return json + "}";
+std::string AntApiPresenter::getJSONRepr() {
+    std::string tiles = "";
+    AntWorld::WorldMap* worldMapTile = sim->getWorldMap();
+    for (int x = 0; x < AntWorld::WorldMapRandom::BOARD_HEIGHT; x++) {
+        tiles += "[";
+        for (int y = 0; y < AntWorld::WorldMapRandom::BOARD_WIDTH; y++) {
+            tiles += getJSONRepr(worldMapTile->getTile(x, y));
+        }
+        tiles += "]";
+        if (x != AntWorld::WorldMapRandom::BOARD_HEIGHT - 1) {
+            tiles += ",";
+        }
+    }
+    return "[" + tiles + "]";
+}
+
+std::string AntApiPresenter::getJSONRepr(AntWorld::Tile *t) {
+    switch (t->getObject()->getObjectType()) {
+        case AntWorld::ObjectType::ROCK:
+            return "{type:0}";
+        case AntWorld::ObjectType::COLONY:
+            return "{type:1}";
+        default:
+            return "{type:2}";
+    }
 }

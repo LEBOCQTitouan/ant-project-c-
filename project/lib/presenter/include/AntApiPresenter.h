@@ -8,6 +8,9 @@
 #include <string>
 #include <crow.h>
 
+#include "../../model/include/Simulator.h"
+#include "../../model/include/world/RandomMapFactory.h"
+
 class AntApiPresenter {
 public:
     static AntApiPresenter& getInstance();
@@ -20,6 +23,10 @@ private:
     AntApiPresenter& operator=(const AntApiPresenter&) = delete;
     // json factory
     std::string makeAntWorldJSON();
+    // ant simulation data
+    AntSimulator::Simulator *sim;
+    std::string getJSONRepr();
+    std::string getJSONRepr(AntWorld::Tile *t);
 };
 
 
