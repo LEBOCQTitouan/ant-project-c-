@@ -27,6 +27,7 @@ private:
     AntSimulator::Simulator *sim;
     crow::json::wvalue getJSONRepr();
     crow::json::wvalue getJSONRepr(AntWorld::Tile *t);
+    crow::json::wvalue getJSONRepr(AntEntities::Ant *a);
 };
 
 

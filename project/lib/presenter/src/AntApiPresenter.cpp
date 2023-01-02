@@ -10,7 +10,9 @@ AntApiPresenter::AntApiPresenter() {
 }
 
 crow::json::wvalue AntApiPresenter::expose() {
-    return getJSONRepr();
+    crow::json::wvalue json = getJSONRepr();
+    sim->turn(); // TODO threading to dynamically refresh
+    return json;
 }
 
 AntApiPresenter& AntApiPresenter::getInstance()
@@ -38,19 +40,50 @@ crow::json::wvalue AntApiPresenter::getJSONRepr() {
 }
 
 crow::json::wvalue AntApiPresenter::getJSONRepr(AntWorld::Tile *t) {
-    crow::json::wvalue tileJSON;
+    if (t->getAnt().empty()) {
+        crow::json::wvalue tileJSON;
 
+        switch (t->getObject()->getObjectType()) {
+            case AntWorld::ObjectType::ROCK:
+                tileJSON["type"] = 0;
+                break;
+            case AntWorld::ObjectType::COLONY:
+                tileJSON["type"] = 1;
+                break;
+            default:
+                tileJSON["type"] = 2;
+                break;
+        }
+
+        return tileJSON;
+    }
+
+    std::vector<crow::json::wvalue> ants;
+    for (AntEntities::Ant *a: t->getAnt()) {
+        ants.push_back(getJSONRepr(a));
+    }
+    crow::json::wvalue antsFinal = std::move(ants);
+    int tileType;
     switch (t->getObject()->getObjectType()) {
         case AntWorld::ObjectType::ROCK:
-            tileJSON["type"] = 0;
+            tileType = 0;
             break;
         case AntWorld::ObjectType::COLONY:
-            tileJSON["type"] = 1;
+            tileType = 1;
             break;
         default:
-            tileJSON["type"] = 2;
+            tileType = 2;
             break;
     }
 
+    crow::json::wvalue tileJSON({{"ants", antsFinal}});
+    tileJSON["type"] = tileType;
     return tileJSON;
+}
+
+crow::json::wvalue AntApiPresenter::getJSONRepr(AntEntities::Ant *a) {
+    crow::json::wvalue ant;
+    ant["colony"] = a->getGeneticMarker();
+    ant["type"] = a->getAntType();
+    return ant;
 }
