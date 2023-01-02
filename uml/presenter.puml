@@ -1,0 +1,25 @@
+@startuml
+'Factory for presenter element'
+interface PresenterElement
+interface ElementPresenterFactory
+'Composite for Api Data'
+interface ApiDataElement
+interface ApiPresenterElement
+
+'Factory for presenter element'
+class ApiPresenterFactory
+'Composite for Api Data'
+class ApiDataLeaf
+class ApiDataComposite
+
+ApiPresenterFactory     --|> ElementPresenterFactory
+ApiPresenterElement     --|> PresenterElement
+ApiDataComposite        -|> ApiDataElement
+ApiDataLeaf             --|> ApiDataElement
+ApiPresenterFactory     .> ApiPresenterElement
+
+ElementPresenterFactory .> PresenterElement
+ApiPresenterElement     *---> ApiDataElement
+ApiDataComposite        *-> ApiDataElement
+
+@enduml

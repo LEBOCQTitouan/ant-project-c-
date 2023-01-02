@@ -47,11 +47,10 @@ If you activate the BUILD_TESTING flag, you need to perform in advance a conan i
 
 ```bash
 cd /path/to/this/project
-mkdir -p build                                          # md build (on Windows)
-conan install . -if=./build -pr=default --build=missing # install debs and build missing one
-cmake -B build                                          # build cMake project
-cmake --build build                                     # compile app
-./build/bin/ant_simulation                              # start application
+mkdir -p build # md build (on Windows)
+conan install . -if="/path/to/cmake-build-directory" -pr=default --build=missing # install debs and build missing one
+cmake -B build
+cmake --build build
 ```
 
 ## Project informations
