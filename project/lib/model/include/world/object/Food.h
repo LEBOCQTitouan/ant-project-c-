@@ -10,6 +10,7 @@
 namespace AntWorld {
     class Food : public Object {
         ObjectType getObjectType() override;
+        int maxAnts() override;
     };
 }
 

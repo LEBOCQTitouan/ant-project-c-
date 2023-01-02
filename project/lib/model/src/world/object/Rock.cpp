@@ -8,4 +8,8 @@ namespace AntWorld {
     ObjectType Rock::getObjectType() {
         return ObjectType::ROCK;
     }
+
+    int Rock::maxAnts() {
+        return 0;
+    }
 }

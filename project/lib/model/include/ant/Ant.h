@@ -5,16 +5,41 @@
 #ifndef ANT_SIMULATION_ANT_H
 #define ANT_SIMULATION_ANT_H
 
-#include "state/AntState.h"
 #include "../clock/TimedElement.h"
 #include "../world/Pheromone.h"
 #include "../world/WorldMap.h"
 
 #include <map>
 
+namespace AntState {
+
+
+    typedef enum {
+        LARVA,
+        MINOR,
+        ADULT,
+        DEAD,
+    } EnumAntState;
+
+
+    class AntState {
+    protected:
+        AntEntities::Ant *ant;
+    public:
+        AntState(AntEntities::Ant *ant) : ant(ant) {}
+
+        virtual EnumAntState getState() = 0;
+
+        virtual void update() = 0;
+
+    };
+
+}
+
 
 namespace AntSimulator {
     class AntAction;
+    class Move;
 }
 namespace AntEntities {
 
@@ -34,7 +59,8 @@ namespace AntEntities {
         int hp; // Health Point
         int ep; // Eat Point
         int age = 0;
-        std::map<AntWorld::Direction, AntWorld::Pheromone> pheromoneList;
+        std::map<AntWorld::Direction, std::vector<AntWorld::Pheromone *>> pheromoneMap;
+        std::vector<AntSimulator::Move *> moveList;
         int x;
         int y;
     public:
@@ -48,7 +74,7 @@ namespace AntEntities {
 
         char getGeneticMarker() const;
 
-        virtual std::vector<AntSimulator::AntAction *> * getActionList() = 0;
+        virtual std::vector<AntSimulator::AntAction *> *getActionList() = 0;
 
         void setX(int x);
 
@@ -59,6 +85,8 @@ namespace AntEntities {
         int getY() const;
 
         virtual AntType getAntType() = 0;
+
+        void setPheromoneMap(std::map<AntWorld::Direction, std::vector<AntWorld::Pheromone *>> newPheromoneMap);
     };
 
 }

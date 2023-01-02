@@ -22,7 +22,6 @@ namespace AntSimulator {
 
     void Simulator::turn() {
         auto antList = worldMap->getAntList();
-
         for(auto ant: *antList) {
             for(auto antAction : *ant->getActionList()) {
                 sequencer.addAntAction(antAction);
@@ -30,6 +29,7 @@ namespace AntSimulator {
         }
 
         sequencer.executeActions(worldMap);
+        AntClock::Clock::getClockInstance()->tick();
 
 
     }

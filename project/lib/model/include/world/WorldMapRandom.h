@@ -19,9 +19,10 @@ namespace AntWorld {
         std::vector<AntEntities::Ant *> * getAntList() override;
         Tile *getTile(int x, int y) override;
         void setTiles(Tile ***tiles);
-
+        std::map<AntWorld::Direction, std::vector<Pheromone *>> getPheromoneMap(int x, int y, bool needToBeDiscovered) override;
     private:
         Tile ***tiles;
+
 
     };
 

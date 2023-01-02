@@ -16,15 +16,19 @@ namespace AntWorld {
         auto *worldMapTile = new WorldMapRandom();
 
 
-        auto **tiles = new Tile**[WorldMapRandom::BOARD_HEIGHT];
-        for(int x = 0; x < WorldMapRandom::BOARD_HEIGHT; x++){
-            tiles[x] = new Tile*[WorldMapRandom::BOARD_WIDTH];
-            for(int y = 0; y < WorldMapRandom::BOARD_WIDTH; y++){
-                tiles[x][y] = new Tile(x,y, generateObject(x,y));
+        auto **tiles = new Tile **[WorldMapRandom::BOARD_HEIGHT];
+        for (int x = 0; x < WorldMapRandom::BOARD_HEIGHT; x++) {
+            tiles[x] = new Tile *[WorldMapRandom::BOARD_WIDTH];
+            for (int y = 0; y < WorldMapRandom::BOARD_WIDTH; y++) {
+                tiles[x][y] = new Tile(x, y, generateObject(x, y));
             }
         }
         worldMapTile->setTiles(tiles);
-        worldMapTile->getTile(WorldMapRandom::BOARD_HEIGHT / 2 , WorldMapRandom::BOARD_HEIGHT / 2)->addAnt(new AntEntities::AntQueen());
+        auto antQueen = new AntEntities::AntQueen();
+        antQueen->setX(WorldMapRandom::BOARD_HEIGHT / 2);
+        antQueen->setY(WorldMapRandom::BOARD_WIDTH / 2);
+        auto tile = worldMapTile->getTile(WorldMapRandom::BOARD_HEIGHT / 2, WorldMapRandom::BOARD_WIDTH / 2);
+        tile->addAnt(antQueen);
 
         /**    for (int i = 0; i < WorldMapRandom::BOARD_HEIGHT * WorldMapRandom::BOARD_HEIGHT * 0.3; i++) {
                 int x;
@@ -56,15 +60,15 @@ namespace AntWorld {
      * Nourriture = Food()
      * @return
      */
-    Object* RandomMapFactory::generateObject(int x, int y) {
-        if(x == WorldMapRandom::BOARD_HEIGHT && y == WorldMapRandom::BOARD_WIDTH){
+    Object *RandomMapFactory::generateObject(int x, int y) {
+        if (x == WorldMapRandom::BOARD_HEIGHT && y == WorldMapRandom::BOARD_WIDTH) {
             return new Colony();
         }
 
         int random = getRandom(0, 100);
-        if(random < 30){
+        if (random < 30) {
             return new Rock();
-        } else if(random < 32){
+        } else if (random < 32) {
             return new Food();
         } else {
             return new Void();

@@ -16,6 +16,7 @@ namespace AntWorld {
 
 
         ObjectType getObjectType() override;
+        int maxAnts() override;
     };
 
 } // AntWorld

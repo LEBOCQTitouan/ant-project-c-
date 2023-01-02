@@ -9,4 +9,8 @@ namespace AntWorld {
     ObjectType Food::getObjectType() {
         return ObjectType::FOOD;
     }
+
+    int Food::maxAnts() {
+        return 12;
+    }
 }

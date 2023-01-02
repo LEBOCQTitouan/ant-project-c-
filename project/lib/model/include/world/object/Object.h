@@ -17,6 +17,7 @@ namespace AntWorld {
     class Object {
     public:
         virtual ObjectType getObjectType() = 0;
+        virtual int maxAnts() = 0;
     };
 
 }

@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <utility>
 #include "../../include/ant/Ant.h"
 
 namespace AntEntities {
@@ -43,6 +44,11 @@ namespace AntEntities {
     void Ant::setY(int newY) {
         Ant::y = newY;
     }
+
+    void Ant::setPheromoneMap(std::map<AntWorld::Direction, std::vector<AntWorld::Pheromone *>> newPheromoneMap) {
+        Ant::pheromoneMap = std::move(newPheromoneMap);
+    }
+
 
 
 }

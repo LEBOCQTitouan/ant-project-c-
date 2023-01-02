@@ -5,13 +5,16 @@
 #ifndef ANT_SIMULATION_LARVASTATE_H
 #define ANT_SIMULATION_LARVASTATE_H
 
-#include "AntState.h"
+
+#include "../Ant.h"
 
 namespace AntState {
 
     class LarvaState : public AntState  {
     public:
         EnumAntState getState() final;
+        void update() final;
+
     };
 
 } // AntState

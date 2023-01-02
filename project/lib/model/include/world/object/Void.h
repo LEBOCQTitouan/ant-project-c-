@@ -11,6 +11,7 @@ namespace AntWorld {
 
     class Void: public Object {
         ObjectType getObjectType() override;
+        int maxAnts() override;
     };
 
 } // AntWorld

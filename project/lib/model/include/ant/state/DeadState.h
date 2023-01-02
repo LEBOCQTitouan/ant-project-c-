@@ -5,13 +5,17 @@
 #ifndef ANT_SIMULATION_DEADSTATE_H
 #define ANT_SIMULATION_DEADSTATE_H
 
-#include "AntState.h"
+#include "../Ant.h"
 
 namespace AntState {
 
     class DeadState : public AntState  {
     public:
+        DeadState(AntEntities::Ant *pAnt);
+
         EnumAntState getState() final;
+        void update() final;
+
     };
 
 } // AntState

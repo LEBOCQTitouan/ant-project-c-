@@ -27,10 +27,11 @@ namespace AntSimulator {
                 break;
             case AntEntities::QUEEN:
                 throw std::invalid_argument("Cannot procreate a queen");
-                break;
         }
         ant->setX(antQueen->getX());
         ant->setY(antQueen->getY());
+        ant->setPheromoneMap(
+                worldMap->getPheromoneMap(ant->getX(), ant->getY(), ant->getAntType() != AntEntities::AntType::SCOUT));
         worldMap->getTile(antQueen->getX(), antQueen->getY())->addAnt(ant);
     }
 

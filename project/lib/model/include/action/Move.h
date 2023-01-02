@@ -6,7 +6,8 @@
 #define ANT_SIMULATION_MOVE_H
 #include "AntAction.h"
 #include "../ant/Ant.h"
-#include "../world/WorldMap.h"
+#include "../world/Direction.h"
+
 
 namespace AntSimulator {
 

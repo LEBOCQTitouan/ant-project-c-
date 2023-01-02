@@ -9,4 +9,8 @@ namespace AntWorld {
     ObjectType Void::getObjectType() {
         return ObjectType::VOID;
     }
+
+    int Void::maxAnts() {
+        return 12;
+    }
 }

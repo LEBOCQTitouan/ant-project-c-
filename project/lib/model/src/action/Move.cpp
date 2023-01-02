@@ -3,36 +3,36 @@
 //
 
 #include "../../include/action/Move.h"
+#include "../../include/world/Direction.h"
 
 namespace AntSimulator {
     void Move::execute(AntWorld::WorldMap *worldMap) {
-        AntWorld::Direction oppositeDirection = getOppositeDirection(direction);
         int newX = ant->getX();
         int newY = ant->getY();
         switch (direction) {
             case AntWorld::Direction::NORTH:
-                newY--;
-                break;
-            case AntWorld::Direction::EAST:
-                newX++;
-                break;
-            case AntWorld::Direction::SOUTH:
-                newY++;
-                break;
-            case AntWorld::Direction::WEST:
                 newX--;
                 break;
-            case AntWorld::NORTH_EAST:
+            case AntWorld::Direction::EAST:
+                newY++;
+                break;
+            case AntWorld::Direction::SOUTH:
                 newX++;
+                break;
+            case AntWorld::Direction::WEST:
                 newY--;
+                break;
+            case AntWorld::NORTH_EAST:
+                newX--;
+                newY++;
                 break;
             case AntWorld::SOUTH_EAST:
                 newX++;
                 newY++;
                 break;
             case AntWorld::SOUTH_WEST:
-                newX--;
-                newY++;
+                newX++;
+                newY--;
                 break;
             case AntWorld::NORTH_WEST:
                 newX--;
@@ -44,6 +44,7 @@ namespace AntSimulator {
         oldTile->removeAnt(ant);
         ant->setX(newX);
         ant->setY(newY);
+        ant->setPheromoneMap(worldMap->getPheromoneMap(newTile->getX(), newTile->getY(), ant->getAntType() != AntEntities::AntType::SCOUT));
         newTile->addAnt(ant);
     }
 

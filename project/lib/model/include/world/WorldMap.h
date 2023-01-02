@@ -11,19 +11,6 @@ namespace AntEntities {
 }
 namespace AntWorld {
 
-
-
-    typedef enum {
-        NORTH,
-        NORTH_EAST,
-        EAST,
-        SOUTH_EAST,
-        SOUTH,
-        SOUTH_WEST,
-        WEST,
-        NORTH_WEST
-    } Direction;
-
     class WorldMap {
 
 
@@ -33,7 +20,7 @@ namespace AntWorld {
 
         virtual Tile *getTile(int x, int y) = 0;
         virtual std::vector<AntEntities::Ant *> * getAntList() = 0;
-
+        virtual std::map<AntWorld::Direction, std::vector<Pheromone *>> getPheromoneMap(int x, int y, bool needToBeDiscovered) = 0;
 
     };
 
