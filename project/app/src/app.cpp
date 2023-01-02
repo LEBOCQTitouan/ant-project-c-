@@ -5,6 +5,8 @@
 #include "../../lib/model/include/world/WorldMapRandom.h"
 #include "../../lib/model/include/world/RandomMapFactory.h"
 #include "../../lib/model/include/Simulator.h"
+#include "../../lib/presenter/include/AntApiPresenter.h"
+#include "crow.h"
 
 using namespace AntWorld;
 
@@ -53,9 +55,8 @@ void displayMap(const AntSimulator::Simulator &sim) {
     }
 }
 
-int main(int argc, char const *argv[]) {
 
-
+void modeTxt() {
     auto *simulator = new AntSimulator::Simulator();
     simulator->initSimulation(new AntWorld::RandomMapFactory);
     displayMap(*simulator);
@@ -67,5 +68,31 @@ int main(int argc, char const *argv[]) {
 
     displayMap(*simulator);
 
+}
+
+
+void modeApi() {
+    crow::App<> *app = new crow::App<>{};
+
+    CROW_ROUTE((*app), "/")([]() {
+        AntApiPresenter &presenter = AntApiPresenter::getInstance();
+        crow::response response(presenter.expose());
+        response.add_header("Access-Control-Allow-Origin", "*");
+        response.add_header("Access-Control-Allow-Headers", "Content-Type");
+        response.code = 200;
+
+        return response;
+
+    });
+
+    app->port(8080).multithreaded().run();
+}
+
+
+int main(int argc, char const *argv[]) {
+    modeApi();
     return 0;
 }
+
+
+
