@@ -42,7 +42,7 @@ namespace AntWorld {
         if (x == 0 && y == -1) {
             return WEST;
         }
-        throw std::invalid_argument("Valuer de direction incorrect");
+        throw std::runtime_error("Valuer de direction incorrect");
     }
 }
 #endif //ANT_SIMULATION_DIRECTION_H

@@ -26,7 +26,7 @@ namespace AntSimulator {
                 ant = new AntEntities::AntSoldier();
                 break;
             case AntEntities::QUEEN:
-                throw std::invalid_argument("Cannot procreate a queen");
+                throw std::runtime_error("Cannot procreate a queen");
         }
         ant->setX(antQueen->getX());
         ant->setY(antQueen->getY());
