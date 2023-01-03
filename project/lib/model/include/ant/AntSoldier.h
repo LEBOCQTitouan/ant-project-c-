@@ -13,6 +13,9 @@ namespace AntEntities {
         AntType getAntType() override;
         void update() override;
         std::vector<AntSimulator::AntAction *> * getActionList() override;
+        AntWorld::Direction chooseRandomDirection();
+    public:
+        AntSoldier();
     };
 
 } // Ant

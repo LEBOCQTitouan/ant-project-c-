@@ -8,4 +8,9 @@ namespace AntState {
     EnumAntState LarvaState::getState() {
         return LARVA;
     }
+
+    void LarvaState::update() {
+
+
+    }
 } // AntState

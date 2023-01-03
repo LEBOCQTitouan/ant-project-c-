@@ -10,6 +10,7 @@
 namespace AntWorld {
     class Rock: public Object {
         ObjectType getObjectType() override;
+        int maxAnts() override;
     };
 }
 

@@ -9,4 +9,8 @@ namespace AntWorld {
         return COLONY;
     }
 
+    int Colony::maxAnts() {
+        return 100;
+    }
+
 } // AntWorld

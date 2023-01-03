@@ -5,14 +5,20 @@
 #ifndef ANT_SIMULATION_ADULTSTATE_H
 #define ANT_SIMULATION_ADULTSTATE_H
 
-#include "AntState.h"
+
+#include "../Ant.h"
 
 namespace AntState {
 
     class AdultState : public AntState {
     public:
+        AdultState(AntEntities::Ant *pAnt);
+
         EnumAntState getState() final;
+        void update() final;
     };
+
+
 
 } // AntState
 

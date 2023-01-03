@@ -5,6 +5,7 @@
 #include "../../include/ant/AntQueen.h"
 #include "../../include/clock/Clock.h"
 #include "../../include/action/Procreate.h"
+#include "../../include/ant/state/AdultState.h"
 
 namespace AntEntities {
     AntQueen::AntQueen() {
@@ -12,6 +13,7 @@ namespace AntEntities {
         this->hp = MAX_HP;
         this->ep = MAX_EP;
         this->age = 0;
+        this->antState = new AntState::AdultState(this);
         AntClock::Clock::getClockInstance()->subscribe(this);
     }
 
@@ -36,10 +38,12 @@ namespace AntEntities {
             return actionList;
         }
 
-        std::mt19937 mt(time(nullptr));
-        int random = mt() % 100;
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<int> dist(0, 100);
 
         AntType antType;
+        int random = dist(gen);
         if (random < 80) {
             antType = AntType::WORKER;
         } else if (random < 95) {
@@ -53,7 +57,8 @@ namespace AntEntities {
 
 
     void AntQueen::update() {
-        age++;
+        this->age++;
+        antState->update();
     }
 
     AntType AntQueen::getAntType() {

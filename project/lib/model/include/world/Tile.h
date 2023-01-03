@@ -7,6 +7,10 @@
 
 #include <vector>
 #include "object/Object.h"
+#include "../world/Direction.h"
+#include "Pheromone.h"
+#include <map>
+
 namespace AntEntities {
     class Ant;
 }
@@ -17,10 +21,12 @@ namespace AntWorld {
     private:
         Object *object;
         std::vector<AntEntities::Ant *> antList;
+        std::vector<Pheromone *> pheromoneList;
+        bool discovered = false;
         int x;
         int y;
     public:
-        Tile(int x, int y,Object *object);
+        Tile(int x, int y, Object *object);
 
         Object *getObject();
 
@@ -39,6 +45,15 @@ namespace AntWorld {
         int getY() const;
 
         void setY(int y);
+
+
+        const std::vector<Pheromone *> &getPheromoneList() const;
+
+        void addPheromone(Pheromone *pheromone);
+
+        void removePheromone(Pheromone *pheromone);
+
+        bool isDiscovered() const;
 
     };
 }
