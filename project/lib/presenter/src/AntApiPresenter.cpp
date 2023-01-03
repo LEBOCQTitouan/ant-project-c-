@@ -10,8 +10,10 @@ AntApiPresenter::AntApiPresenter() {
 }
 
 crow::json::wvalue AntApiPresenter::expose() {
+    m.lock();
     crow::json::wvalue json = getJSONRepr();
     sim->turn(); // TODO threading to dynamically refresh
+    m.unlock();
     return json;
 }
 

@@ -21,6 +21,7 @@ private:
     AntApiPresenter();
     AntApiPresenter(const AntApiPresenter&) = delete;
     AntApiPresenter& operator=(const AntApiPresenter&) = delete;
+    std::mutex m;
     // json factory
     std::string makeAntWorldJSON();
     // ant simulation data
