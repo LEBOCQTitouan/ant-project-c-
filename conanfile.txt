@@ -1,5 +1,5 @@
 [requires]
-crowcpp-crow/1.0+3 # http lib
+crowcpp-crow/1.0+3   # http lib
 
 [generators]
 cmake

@@ -1,11 +1,10 @@
-#include <iostream>
-#include "../../lib/model/include/world/Tile.h"
-#include "../../lib/presenter/include/test.hpp"
+#include "../../lib/presenter/include/ApiAntSimulation.h"
 
-int main(int argc, char const *argv[])
-{
-    std::cout<<"Hello world !"<<std::endl;
-    Tile *t = new Tile();
-    test();
-    return 0;
+namespace std {
+    int main(int argc, char const *argv[])
+    {
+        ApiAntSimulation api = ApiAntSimulation();
+        api.expose();
+        return 0;
+    }
 }
