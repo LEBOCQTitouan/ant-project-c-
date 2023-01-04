@@ -15,8 +15,8 @@ namespace AntWorld {
 
 
     public:
-        static const int BOARD_WIDTH = 211;
-        static const int BOARD_HEIGHT = 201;
+        static const int BOARD_WIDTH = 50;
+        static const int BOARD_HEIGHT = 50;
 
         virtual Tile *getTile(int x, int y) = 0;
         virtual std::vector<AntEntities::Ant *> * getAntList() = 0;
