@@ -15,6 +15,7 @@ class AntApiPresenter {
 public:
     static AntApiPresenter& getInstance();
     crow::json::wvalue expose();
+    crow::json::wvalue exposeStats();
 
 private:
     // singleton

@@ -85,6 +85,17 @@ void modeApi() {
 
     });
 
+    CROW_ROUTE((*app), "/stats/")([]() {
+        AntApiPresenter &presenter = AntApiPresenter::getInstance();
+        crow::response response(presenter.exposeStats());
+        response.add_header("Access-Control-Allow-Origin", "*");
+        response.add_header("Access-Control-Allow-Headers", "Content-Type");
+        response.code = 200;
+
+        return response;
+
+    });
+
     app->port(8080).multithreaded().run();
 }
 

@@ -17,6 +17,43 @@ crow::json::wvalue AntApiPresenter::expose() {
     return json;
 }
 
+crow::json::wvalue AntApiPresenter::exposeStats() {
+    m.lock();
+    std::map<AntEntities::AntType, int> stats;
+    for (auto ant : *sim->getWorldMap()->getAntList()) {
+        if (stats.find(ant->getAntType()) == stats.end()) {
+            stats.insert({ant->getAntType(), 1});
+        } else {
+            std::map<AntEntities::AntType , int>::iterator it = stats.find(ant->getAntType());
+            if (it != stats.end())
+                it->second++;
+        }
+    }
+    m.unlock();
+    crow::json::wvalue json = {};
+    std::map<AntEntities::AntType, int>::iterator it;
+    for (it = stats.begin(); it != stats.end(); it++)
+    {
+        std::string key = "";
+        switch (it->first) {
+            case AntEntities::QUEEN:
+                key += "QUEEN";
+                break;
+            case AntEntities::WORKER:
+                key += "WORKER";
+                break;
+            case AntEntities::SOLDIER:
+                key += "SOLDIER";
+                break;
+            case AntEntities::SCOUT:
+                key += "SCOUT";
+                break;
+        }
+        json[key] = it->second;
+    }
+    return json;
+}
+
 AntApiPresenter& AntApiPresenter::getInstance()
 {
     static AntApiPresenter instance;
@@ -41,22 +78,16 @@ crow::json::wvalue AntApiPresenter::getJSONRepr() {
     return tiles;
 }
 
+/**
+ * This function is a bit weird by its shape and need to double the type attribution because of the array json conversion
+ * @param t
+ * @return
+ */
 crow::json::wvalue AntApiPresenter::getJSONRepr(AntWorld::Tile *t) {
     if (t->getAnt().empty()) {
         crow::json::wvalue tileJSON;
-
-        switch (t->getObject()->getObjectType()) {
-            case AntWorld::ObjectType::ROCK:
-                tileJSON["type"] = 0;
-                break;
-            case AntWorld::ObjectType::COLONY:
-                tileJSON["type"] = 1;
-                break;
-            default:
-                tileJSON["type"] = 2;
-                break;
-        }
-
+        tileJSON["type"] = t->getObject()->getObjectType();
+        tileJSON["discovered"] = t->isDiscovered();
         return tileJSON;
     }
 
@@ -65,21 +96,10 @@ crow::json::wvalue AntApiPresenter::getJSONRepr(AntWorld::Tile *t) {
         ants.push_back(getJSONRepr(a));
     }
     crow::json::wvalue antsFinal = std::move(ants);
-    int tileType;
-    switch (t->getObject()->getObjectType()) {
-        case AntWorld::ObjectType::ROCK:
-            tileType = 0;
-            break;
-        case AntWorld::ObjectType::COLONY:
-            tileType = 1;
-            break;
-        default:
-            tileType = 2;
-            break;
-    }
 
     crow::json::wvalue tileJSON({{"ants", antsFinal}});
-    tileJSON["type"] = tileType;
+    tileJSON["type"] = t->getObject()->getObjectType();
+    tileJSON["discovered"] = t->isDiscovered();
     return tileJSON;
 }
 
